@@ -2,7 +2,25 @@ class ChallengesController < ApplicationController
   # GET /challenges
   # GET /challenges.json
   def index
-    @challenges = Challenge.all
+
+    # TODO リファクタリング modelに移動
+
+    related_id = params[:related_id]
+    status = params[:status]
+
+    if related_id && status
+      @challenges = Challenge.where('(to_user_id = ? OR from_user_id = ?) AND status = ?',
+        related_id, related_id, status)
+    elsif related_id
+      @challenges = Challenge.where('(to_user_id = ? OR from_user_id = ?)',
+        related_id, related_id)
+    else
+      exp = Hash::new
+      [:status, :to_user_id, :from_user_id].each do |key|
+        exp[key] = params[key] if params[key]
+      end
+      @challenges = Challenge.where(exp)
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -64,6 +82,7 @@ class ChallengesController < ApplicationController
       if @challenge.update_attributes(params[:challenge])
 
         #resultをセット
+        @challenge.set_result
 
         format.html { redirect_to @challenge, notice: 'Challenge was successfully updated.' }
         format.json { head :no_content }
