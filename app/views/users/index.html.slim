@@ -6,14 +6,13 @@ table.table
     th Bio
     th
     th
-    th
 
   - @users.each do |user|
     tr
-      td = user.name
+      td = link_to user.name, user
       td = user.bio
-      td = link_to 'Show', user
-      td = link_to 'Edit', edit_user_path(user)
-      td = link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete
+      //td = link_to 'Show', user
+      td
+      td = link_to "Janken !", new_challenge_path + "?to=" + user.id.to_s
 
 br

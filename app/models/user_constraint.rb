@@ -1,11 +1,9 @@
-
 class UserConstraint
 	def matches?(request)
-		if ["edit", "update", "destroy"].include?(request[:action])
-			# 自分のidだけ編集できる
-			# TODO ここでやるべきなのか不明
-			return request.session['user_id'] == request[:id].to_i
-			false
+		case request[:action]
+		when "edit", "update", "destroy"
+			# 自分のidの場合だけ編集できる
+			request.session['user_id'] == request[:id].to_i
 		else
 			true
 		end

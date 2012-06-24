@@ -1,8 +1,12 @@
 Jankens::Application.routes.draw do
-  resources :challenges
-
   root :to => "home#index"
-  resources :users, :only => ['index', 'show', 'edit', 'update', 'destroy'],
+
+  resources :challenges,
+    #only => [],
+    :constraints => ChallengeConstraint.new
+
+  resources :users,
+    :only => ['index', 'show', 'edit', 'update', 'destroy'],
     :constraints => UserConstraint.new
 
   #OmniAuth
