@@ -14,7 +14,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    #TODO 権限判定
     @user = User.find(params[:id])
   end
 

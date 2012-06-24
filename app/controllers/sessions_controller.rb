@@ -1,13 +1,13 @@
 class SessionsController < ApplicationController
 	def create
-    auth = request.env["omniauth.auth"]
+        auth = request.env["omniauth.auth"]
 
-    raise "support only twitter now " unless(auth["provider"] == "twitter")
+        raise "support only twitter now " unless(auth["provider"] == "twitter")
 
-    user = User.find_by_twitter_id(auth["uid"]) || User.create_with_omniauth(auth)
+        user = User.find_by_twitter_id(auth["uid"]) || User.create_with_omniauth(auth)
 
-    session[:user_id] = user.id
-    redirect_to root_url, :notice => "log in"
+        session[:user_id] = user.id
+        redirect_to users_url, :notice => "log in"
 	end
 
 	def destroy
