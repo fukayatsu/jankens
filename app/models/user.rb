@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   attr_accessible :bio, :name, :twitter_id
 
+  has_many :callenges
+
   def self.create_with_omniauth(auth)
     create! do |user|
       user.twitter_id = auth["uid"]

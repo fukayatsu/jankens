@@ -7,9 +7,30 @@
           li = message
 
   .field
-    = f.label :message
-    = f.text_area :message
+    = f.label :from_message
+    = f.text_area :from_message
+  .field
+    = f.label :from_user_id
+    = f.number_field :from_user_id
+  .field
+    = f.label :from_choice
+    = f.number_field :from_choice
+  .field
+    = f.label :to_message
+    = f.text_area :to_message
+  .field
+    = f.label :to_user_id
+    = f.number_field :to_user_id
+  .field
+    = f.label :to_choice
+    = f.number_field :to_choice
   .field
     = f.label :status
-    = f.number_field :status
+    = f.text_field :status
+  .field
+    = f.label :allow_draw
+    = f.check_box :allow_draw
+  .field
+    = f.label :result
+    = f.text_area :result
   .actions = f.submit 'Save'

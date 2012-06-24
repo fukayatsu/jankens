@@ -11,13 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120624070918) do
+ActiveRecord::Schema.define(:version => 20120624113438) do
 
   create_table "challenges", :force => true do |t|
-    t.text     "message"
-    t.integer  "status"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.text     "from_message"
+    t.integer  "from_user_id"
+    t.integer  "from_choice"
+    t.text     "to_message"
+    t.integer  "to_user_id"
+    t.integer  "to_choice"
+    t.string   "status"
+    t.boolean  "allow_draw"
+    t.text     "result"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "users", :force => true do |t|

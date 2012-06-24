@@ -1,11 +1,32 @@
 p#notice = notice
 
 p
-  strong Message:
-  = @challenge.message
+  strong From message:
+  = @challenge.from_message
+p
+  strong From user:
+  = @challenge.from_user_id
+p
+  strong From choice:
+  = @challenge.from_choice
+p
+  strong To message:
+  = @challenge.to_message
+p
+  strong To user:
+  = @challenge.to_user_id
+p
+  strong To choice:
+  = @challenge.to_choice
 p
   strong Status:
   = @challenge.status
+p
+  strong Allow draw:
+  = @challenge.allow_draw
+p
+  strong Result:
+  = @challenge.result
 
 = link_to 'Edit', edit_challenge_path(@challenge)
 '|

@@ -1,17 +1,31 @@
 h1 Listing challenges
 
-table.table
+table
   tr
-    th Message
+    th From message
+    th From user
+    th From choice
+    th To message
+    th To user
+    th To choice
     th Status
+    th Allow draw
+    th Result
     th
     th
     th
 
   - @challenges.each do |challenge|
     tr
-      td = challenge.message
+      td = challenge.from_message
+      td = challenge.from_user_id
+      td = challenge.from_choice
+      td = challenge.to_message
+      td = challenge.to_user_id
+      td = challenge.to_choice
       td = challenge.status
+      td = challenge.allow_draw
+      td = challenge.result
       td = link_to 'Show', challenge
       td = link_to 'Edit', edit_challenge_path(challenge)
       td = link_to 'Destroy', challenge, :confirm => 'Are you sure?', :method => :delete
