@@ -44,10 +44,18 @@ html lang="en"
                 li= link_to "Link 2", "/path2"
                 li= link_to "Link 3", "/path3"
           .span9
+            = notice
+            br
+            - if current_user
+              ="log in as #{current_user.name}"
+              br
+              a= link_to "logout", logout_path
+            - else
+              = "please log in"
             = yield
 
       footer
-        p &copy; Company 2012
+        p &copy; fukayatsu 2012
     /!
       Javascripts
       \==================================================

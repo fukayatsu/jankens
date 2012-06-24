@@ -2,6 +2,10 @@ Jankens::Application.routes.draw do
   #get "home/index"
   root :to => "home#index"
 
+  #OmniAuth
+  match "/auth/:provider/callback" => "sessions#create"
+  match "/logout" => "sessions#destory", as: :logout
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
