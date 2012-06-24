@@ -39,6 +39,7 @@ class ChallengesController < ApplicationController
 
   # POST /challenges
   # POST /challenges.json
+  # 先手がつくる
   def create
     @challenge = Challenge.new(params[:challenge])
 
@@ -55,11 +56,15 @@ class ChallengesController < ApplicationController
 
   # PUT /challenges/1
   # PUT /challenges/1.json
+  # 後手が部分アップデート
   def update
     @challenge = Challenge.find(params[:id])
 
     respond_to do |format|
       if @challenge.update_attributes(params[:challenge])
+
+        #resultをセット
+
         format.html { redirect_to @challenge, notice: 'Challenge was successfully updated.' }
         format.json { head :no_content }
       else
