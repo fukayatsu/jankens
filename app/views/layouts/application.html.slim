@@ -23,12 +23,18 @@ html lang="en"
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.brand href="#"Jankens
+          a.brand href="/"Jankens
           .container.nav-collapse
-            ul.nav
-              li= link_to "Link 1", "/path1"
-              li= link_to "Link 2", "/path2"
-              li= link_to "Link 3", "/path3"
+            //ul.nav
+              //li= link_to "ユーザー 一覧", "/users"
+              //li= link_to "挑戦 一覧", "/challenges"
+              //li= link_to "結果 一覧", "/results"
+            ul.nav.pull-right
+              - if current_user
+                li= link_to "#{current_user.name}", user_path(current_user.id)
+                li= link_to "logout", logout_path
+              - else
+                li= link_to "login with twitter", "/auth/twitter"
 
     .container
 
@@ -37,21 +43,13 @@ html lang="en"
           
           .span3
             .well.sidebar-nav
-              h3 Sidebar
+              h3 Menu
               ul.nav.nav-list
-                li.nav-header Sidebar
-                li= link_to "Link 1", "/path1"
-                li= link_to "Link 2", "/path2"
-                li= link_to "Link 3", "/path3"
+                //li.nav-header Sidebar
+                li= link_to "Users", "/users"
+                li= link_to "Challenges", "/challenges"
+                li= link_to "Results", "/results"
           .span9
-            = notice
-            br
-            - if current_user
-              ="log in as #{current_user.name}"
-              br
-              a= link_to "logout", logout_path
-            - else
-              = "please log in"
             = yield
 
       footer

@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     redirect_to root_url, :notice => "log in"
 	end
 
-	def destory
+	def destroy
 		session[:user_id] = nil
         redirect_to root_url, :notice => "log out"
 	end

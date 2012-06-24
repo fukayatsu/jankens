@@ -1,0 +1,21 @@
+h1 Listing challenges
+
+table
+  tr
+    th Message
+    th Status
+    th
+    th
+    th
+
+  - @challenges.each do |challenge|
+    tr
+      td = challenge.message
+      td = challenge.status
+      td = link_to 'Show', challenge
+      td = link_to 'Edit', edit_challenge_path(challenge)
+      td = link_to 'Destroy', challenge, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New Challenge', new_challenge_path

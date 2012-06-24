@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Message:
+  = @challenge.message
+p
+  strong Status:
+  = @challenge.status
+
+= link_to 'Edit', edit_challenge_path(@challenge)
+'|
+= link_to 'Back', challenges_path

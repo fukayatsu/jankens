@@ -1,10 +1,12 @@
 Jankens::Application.routes.draw do
-  #get "home/index"
+  resources :challenges
+
   root :to => "home#index"
+  resources :users, :only => ['index', 'show', 'edit', 'update', 'destroy']
 
   #OmniAuth
-  match "/auth/:provider/callback" => "sessions#create"
-  match "/logout" => "sessions#destory", as: :logout
+  match "auth/:provider/callback" => "sessions#create", as: :callback
+  match "logout" => "sessions#destroy", as: :logout
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
