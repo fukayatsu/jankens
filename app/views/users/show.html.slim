@@ -1,12 +1,37 @@
 p#notice = notice
 
-p
-  strong Name:
-  = @user.name
-p
-  strong Bio:
-  = @user.bio
+img src="https://api.twitter.com/1/users/profile_image?user_id=#{@user.twitter_id}"
 
-= link_to 'Edit', edit_user_path(@user)
-'|
-= link_to 'Back', users_path
+.row
+  .span4
+    br
+    p
+      strong 名前:
+      br
+      = @user.name
+      = link_to " (twitter)", Settings.twitter.api.id2web + @user.twitter_id
+    p
+      strong 自己紹介:
+      br
+      = @user.bio
+    br
+    - if current_user != nil && current_user.id == @user.id
+      = link_to '(プロフィール編集)', edit_user_path(@user)
+    br
+
+  .span4
+    p
+      strong 対戦数:
+      = @match_count
+    p
+      strong 勝ち:
+      = @win_count
+    p
+      strong 負け:
+      = @lose_count
+    p
+      strong あいこ:
+      = @draw_count
+    p
+      strong 勝率[%]:
+      = @win_rate

@@ -11,5 +11,5 @@
     = f.text_field :name
   .field
     = f.label :bio
-    = f.text_area :bio
+    = f.text_area :bio, {:cols => 40, :rows => 10}
   .actions = f.submit 'Save'

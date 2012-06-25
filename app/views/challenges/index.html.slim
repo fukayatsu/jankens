@@ -1,33 +1,33 @@
-h1 Listing challenges
-
-table
-  tr
-    th From message
-    th From user
-    th From choice
-    th To message
-    th To user
-    th To choice
-    th Status
-    th Allow draw
-    th Result
-    th
-    th
-    th
-
+h1 ジャンケン 一覧
+br
+table.table
   - @challenges.each do |challenge|
     tr
-      td = challenge.from_message
-      td = challenge.from_user_id
-      td = challenge.from_choice
-      td = challenge.to_message
-      td = challenge.to_user_id
-      td = challenge.to_choice
-      td = challenge.status
-      td = challenge.allow_draw
-      td = challenge.result
-      td = link_to 'Show', challenge
-      td = link_to 'Edit', edit_challenge_path(challenge)
-      td = link_to 'Destroy', challenge, :confirm => 'Are you sure?', :method => :delete
+      td
+        img src=challenge.from.thumb_url
+        h4= link_to challenge.from.name, challenge.from
+      td
+        p
+          strong= "<「#{challenge.from_message}」"
+      td
+        p
+          - if challenge.result == 'draw'
+            h3 = link_to "△ - △", challenge
+          - elsif challenge.result == 'from'
+            h3 = link_to "◯ - ×", challenge
+          - elsif challenge.result == 'to'
+            h3 = link_to "× - ◯", challenge
+          - else
+            h3 = link_to "　 - 　", challenge
+      td
+        p
+          strong.pull-right = "「#{challenge.to_message}」>"
+      td
+        img src=challenge.to.thumb_url
+        h4= link_to challenge.to.name, challenge.to
+
+      //td = link_to 'Show', challenge
+      //td = link_to 'Edit', edit_challenge_path(challenge)
+      //td = link_to 'Destroy', challenge, :confirm => 'Are you sure?', :method => :delete
 
 br

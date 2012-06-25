@@ -1,4 +1,7 @@
-h1= "vs. #{user_name(@challenge.from_user_id)}"
+img src=@challenge.from.thumb_url
+h4= link_to @challenge.from.name, @challenge.from
+p
+  strong="「 #{@challenge.from_message} 」"
 br
 //== render 'form'
 = form_for @challenge do |f|
@@ -8,10 +11,6 @@ br
       ul
         - @challenge.errors.full_messages.each do |message|
           li = message
-
-  p
-    strong Message:
-    = @challenge.from_message
 
   .field
     = f.label :to_choice, "何を出します？"
@@ -29,7 +28,5 @@ br
 
 
 
-= link_to 'Show', @challenge
-'|
-= link_to 'Back', challenges_path
+= link_to 'やめる', challenges_path
 

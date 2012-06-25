@@ -3,6 +3,9 @@ defaults: &defaults
     consumer:
       key: <%= ENV["TWITTER_CONSUMER_KEY"] %>
       secret: <%= ENV["TWITTER_CONSUMER_SECRET"] %>
+    api:
+      thumb: "https://api.twitter.com/1/users/profile_image?user_id="
+      id2web: "http://twid2web.appspot.com/"
 
 development:
   <<: *defaults

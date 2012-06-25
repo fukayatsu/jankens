@@ -1,6 +1,10 @@
-h1= "New challenge to #{user_name(params['to'])}"
-br
+img src=user_of(params['to']).thumb_url
+h4= link_to user_of(params['to']).name, user_of(params['to'])
+h4= "さんに勝負を挑みます"
+//h4= link_to challenge.from.name, challenge.from
+//h1= "New challenge to #{user_name(params['to'])}"
 
+br
 //== render 'form'
 = form_for @challenge do |f|
   - if @challenge.errors.any?
@@ -26,7 +30,7 @@ br
     = f.hidden_field :allow_draw, {:value => true}
   .field
     = f.hidden_field :status, {:value => "open"}
-  .actions = f.submit 'Save'
+  .actions = f.submit '決定'
 
 
-= link_to 'Back', challenges_path
+= link_to 'やめる', users_path

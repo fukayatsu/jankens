@@ -40,20 +40,20 @@ html lang="en"
 
       .content
         .row
-          
           .span3
             .well.sidebar-nav
               h3 Menu
               ul.nav.nav-list
                 //li.nav-header Sidebar
-                li= link_to "Users", "/users"
-                li= link_to "Challenges", "/challenges"
-                li= link_to "Results", "/results"
+                li= link_to "ユーザー 一覧", "/users"
+                li= link_to "ジャンケン 一覧", "/challenges"
+                - if current_user
+                  li= link_to "(自分に関係あるもの)", "/challenges?related_id="+current_user.id.to_s
           .span9
             = yield
 
       footer
-        p &copy; fukayatsu 2012
+      p = link_to '© fukayatsu 2012', "https://twitter.com/fukayatsu"
     /!
       Javascripts
       \==================================================

@@ -1,18 +1,31 @@
-h1 Listing users
-
+h1 ユーザー 一覧
+br
 table.table
   tr
-    th Name
-    th Bio
+    th
+    th 名前
+    th 自己紹介
     th
     th
 
   - @users.each do |user|
     tr
+      td
+        img src=user.thumb_url
       td = link_to user.name, user
       td = user.bio
       //td = link_to 'Show', user
       td
-      td = link_to "Janken !", new_challenge_path + "?to=" + user.id.to_s
+      //td = link_to "Janken !", new_challenge_path + "?to=" + user.id.to_s
+      td
+        - if(current_user == nil)
+          strong= link_to "(ログインするとジャンケンができます)",
+          '/auth/twitter'
+
+        - elsif(current_user.id != user.id)
+          a.btn href="#{new_challenge_path}?to=#{user.id.to_s}"
+            ="ジャンケンを申し込む"
+        - else
+          strong= "わたしです"
 
 br

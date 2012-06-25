@@ -1,33 +1,73 @@
 p#notice = notice
 
-p
-  strong From message:
-  = @challenge.from_message
-p
-  strong From user:
-  = @challenge.from_user_id
-p
-  strong From choice:
-  = @challenge.from_choice
-p
-  strong To message:
-  = @challenge.to_message
-p
-  strong To user:
-  = @challenge.to_user_id
-p
-  strong To choice:
-  = @challenge.to_choice
-p
-  strong Status:
-  = @challenge.status
-p
-  strong Allow draw:
-  = @challenge.allow_draw
-p
-  strong Result:
-  = @challenge.result
+.row
+  .span9
+    .span4
+      .hero-unit
+        h1 = '先攻'
+        br
+        img src=@challenge.from.thumb_url
+        h2 = link_to @challenge.from.name, @challenge.from
+    .span1
+    .span4
+      .hero-unit
+        h1 = '後攻'
+        br
+        img src=@challenge.to.thumb_url
+        h2 = link_to @challenge.to.name, @challenge.to
 
-= link_to 'Edit', edit_challenge_path(@challenge)
-'|
-= link_to 'Back', challenges_path
+.row
+  .span9
+    h1 = "  >意気込みをどうぞ"
+    .span4
+      .hero-unit
+        img src=@challenge.from.thumb_url
+        h2 = link_to @challenge.from.name, @challenge.from
+        h2 = "「 #{@challenge.from_message} 」"
+    .span1
+    - if @challenge.status == 'close'
+      .span4
+        .hero-unit
+          img src=@challenge.to.thumb_url
+          h2 = link_to @challenge.to.name, @challenge.to
+          h2 = "「 #{@challenge.to_message} 」"
+    - elsif @challenge.to_user_id == current_user.id
+      .span4
+        a.btn.btn-large href=edit_challenge_path ="挑戦を受ける"
+
+- if @challenge.status == 'close'
+  .row
+    .span9
+      h1 = "  >「「じゃんけん、」」"
+      .span4
+        .hero-unit
+          img src=@challenge.from.thumb_url
+          h2 = link_to @challenge.from.name, @challenge.from
+          br
+          h1 = "#{janken_name(@challenge.from_choice)}"
+      .span1
+      .span4
+        .hero-unit
+          img src=@challenge.to.thumb_url
+          h2 = link_to @challenge.to.name, @challenge.to
+          br
+          h1 = "#{janken_name(@challenge.to_choice)}"
+
+  .row
+    .span9
+      h1 = "  >結果"
+      .span8
+        .hero-unit
+          - if(@challenge.result == 'draw')
+            h1 = "あいこ"
+          - elsif(@challenge.result == 'from')
+            img src=@challenge.from.thumb_url
+            h1 = link_to "#{user_name(@challenge.from_user_id)}の勝ち", @challenge.from
+          - elsif(@challenge.result == 'to')
+            img src=@challenge.to.thumb_url
+            h1 = link_to "#{user_name(@challenge.to_user_id)}の勝ち", @challenge.to
+
+
+//= link_to 'Edit', edit_challenge_path(@challenge)
+//'|
+//= link_to 'Back', challenges_path

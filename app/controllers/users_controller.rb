@@ -8,6 +8,14 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+
+    @match_count = Challenge.match_count(@user.id)
+    @open_count = Challenge.open_count(@user.id)
+    @win_count = Challenge.win_count(@user.id)
+    @lose_count = Challenge.lose_count(@user.id)
+    @draw_count = Challenge.draw_count(@user.id)
+    @win_rate = 100.0 * @win_count / @match_count unless @match_count == 0
+
     respond_to do |format|
       format.html
     end
