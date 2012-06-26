@@ -1,2 +1,4 @@
+ソーシャルじゃんけん
+
 じゃんけんしようぜ！
-http://jankens.herokuapp.com/
+http://jankens.net
