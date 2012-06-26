@@ -1,7 +1,14 @@
-h1 Editing user
+h1 ユーザー情報の編集
 
-== render 'form'
+.row
+  .span4
+    == render 'form'
 
-= link_to 'Show', @user
-'|
-= link_to 'Back', users_path
+    = link_to 'やめる', users_path
+
+  .span2
+  .span3
+    = link_to 'ユーザー情報を消去する', @user, method: :delete, data: { confirm: 'ほんとうにいいんですか?'}
+    br
+    br
+    p (ユーザーを削除すると、関連するジャンケンの情報も同時に消去され、ユーザーは初めから存在しなかったような状態になります。)

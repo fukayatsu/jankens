@@ -41,6 +41,11 @@ class UsersController < ApplicationController
     if session[:user_id] == @user.id
       session[:user_id] = nil
     end
+
+    #ジャンケン情報も削除する
+    Challenge.where('to_user_id = ? OR from_user_id = ?',
+        @user.id, @user.id).destroy_all
+
     @user.destroy
 
     respond_to do |format|
