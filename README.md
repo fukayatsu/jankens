@@ -9,6 +9,13 @@ http://jankens.net
 
 TODO
 ====
+
 add spec
+
 more twitter linkage
+
 jankens with more people
+
+ga
+
+ad
