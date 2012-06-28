@@ -17,7 +17,7 @@ table.table
             h3 = link_to "◯ - ×", challenge
           - elsif challenge.result == 'to'
             h3 = link_to "× - ◯", challenge
-          - elsif challenge.to.id == current_user.id
+          - elsif current_user != nil && current_user.id == challenge.to.id
             h3 = link_to "　 (決着を付ける) 　", challenge
           - else
             h3 = link_to "　 (後攻) 　", challenge
